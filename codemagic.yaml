@@ -9,13 +9,10 @@ workflows:
       - name: Install Cordova
         script: |
           npm install -g cordova
-      - name: Navigate to project directory
-        script: |
-          cd cordova-plugin-mapbox-demo  # Modify if your repo is in a subfolder
       - name: Prepare Cordova project
         script: |
           cordova platform add android@$CORDOVA_ANDROID_VERSION
-          cordova plugin add https://github.com/LuisFCSilva/cordova-plugin-mapbox-demo.git --nofetch
+          cordova plugin add https://github.com/dagatsoin/cordova-plugin-mapbox.git --nofetch
           cordova build android
     artifacts:
       - platforms/android/app/build/outputs/**/*.apk
