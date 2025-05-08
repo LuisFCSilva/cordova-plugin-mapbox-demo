@@ -2,17 +2,20 @@ workflows:
   build-android:
     name: Cordova Android Build
     environment:
-      node: 16.20.0
+      node: 12.22.12
       vars:
-        CORDOVA_ANDROID_VERSION: 12.0.1
+        CORDOVA_ANDROID_VERSION: 9.1.0
     scripts:
       - name: Install Cordova
         script: |
           npm install -g cordova
+      - name: Navigate to project directory
+        script: |
+          cd cordova-plugin-mapbox-demo  # Modify if your repo is in a subfolder
       - name: Prepare Cordova project
         script: |
           cordova platform add android@$CORDOVA_ANDROID_VERSION
-          cordova plugin add https://github.com/mapbox/mapbox-gl-cordova --nofetch
+          cordova plugin add https://github.com/LuisFCSilva/cordova-plugin-mapbox-demo.git --nofetch
           cordova build android
     artifacts:
       - platforms/android/app/build/outputs/**/*.apk
