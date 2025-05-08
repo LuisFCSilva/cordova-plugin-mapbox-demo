@@ -2,7 +2,7 @@ workflows:
   build-android:
     name: Cordova Android Build
     environment:
-      node: 12.22.12
+      node: 16.20.0 # Updated from 12 to 16
       vars:
         CORDOVA_ANDROID_VERSION: 9.1.0
     scripts:
