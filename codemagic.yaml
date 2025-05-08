@@ -17,9 +17,9 @@ workflows:
           python3 -m ensurepip
           python3 -m pip install setuptools
 
-      - name: Install project dependencies
+      - name: Install project dependencies (forced)
         script: |
-          npm ci || npm install
+          npm install --legacy-peer-deps
 
       - name: Prepare Cordova project
         script: |
