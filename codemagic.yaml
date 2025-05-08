@@ -2,10 +2,9 @@ workflows:
   build-android:
     name: Cordova Android Build
     environment:
-      instance_type: linux_x2
+      node: 16.20.0
       vars:
         CORDOVA_ANDROID_VERSION: 12.0.1
-      node: 16.20.0
     scripts:
       - name: Install Cordova
         script: |
