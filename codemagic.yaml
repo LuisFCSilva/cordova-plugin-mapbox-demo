@@ -1,0 +1,23 @@
+workflows:
+  build-android:
+    name: Cordova Android Build
+    environment:
+      vars:
+        CORDOVA_ANDROID_VERSION: 12.0.1
+      node: 16.20.0
+      android: true
+    scripts:
+      - name: Install Cordova
+        script: |
+          npm install -g cordova
+      - name: Prepare Cordova project
+        script: |
+          cordova platform add android@$CORDOVA_ANDROID_VERSION
+          cordova plugin add https://github.com/mapbox/mapbox-gl-cordova --nofetch
+          cordova build android
+    artifacts:
+      - platforms/android/app/build/outputs/**/*.apk
+    publishing:
+      email:
+        recipients:
+          - lokluis@gmail.com
