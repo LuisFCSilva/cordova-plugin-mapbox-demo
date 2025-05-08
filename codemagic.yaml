@@ -10,34 +10,12 @@ workflows:
         script: |
           npm install -g cordova
 
-      - name: Install project dependencies (forced)
+      # Optional: Only needed if using native modules like `deasync`
+      - name: Install Python distutils
         script: |
-          npm install --legacy-peer-deps
-
-      - name: Prepare Cordova project
-        script: |
-          # Ensure Cordova platform is added, skip if already added
-          cordova platform add android@$CORDOVA_ANDROID_VERSION || true
-          cordova plugin add https://github.com/dagatsoin/cordova-plugin-mapbox.git --nofetch
-          cordova build android
-
-    artifacts:
-      - platforms/android/app/build/outputs/**/*.apk
-
-    publishing:
-      email:
-        recipients:
-          - your-email@example.comworkflows:
-  build-android:
-    name: Cordova Android Build
-    environment:
-      node: 16.20.0
-      vars:
-        CORDOVA_ANDROID_VERSION: 9.1.0
-    scripts:
-      - name: Install Cordova CLI
-        script: |
-          npm install -g cordova
+          brew install python@3.10
+          python3 -m ensurepip
+          python3 -m pip install setuptools
 
       - name: Install project dependencies (forced)
         script: |
@@ -45,8 +23,7 @@ workflows:
 
       - name: Prepare Cordova project
         script: |
-          # Ensure Cordova platform is added, skip if already added
-          cordova platform add android@$CORDOVA_ANDROID_VERSION || true
+          cordova platform add android@$CORDOVA_ANDROID_VERSION
           cordova plugin add https://github.com/dagatsoin/cordova-plugin-mapbox.git --nofetch
           cordova build android
 
