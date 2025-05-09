@@ -17,7 +17,7 @@
     "cordova-android": "^9.1.0",
     "cordova-android-support-gradle-release": "^3.0.0",
     "cordova-plugin-browsersync-gen2": "^1.1.7",
-    "cordova-plugin-mapbox": "https://github.com/dagatsoin/cordova-plugin-mapbox.git#0.0.4",
+    "cordova-plugin-mapbox": "https://github.com/dagatsoin/cordova-plugin-mapbox.git",
     "cordova-plugin-whitelist": "^1.3.3",
     "dot-prop": ">=4.2.1",
     "react": "^19.0.1",
@@ -26,12 +26,27 @@
     "react-native-svg": "^9.13.6",
     "reactxp": "^2.0.0"
   },
+  "devDependencies": {
+    "@types/cordova": "0.0.34",
+    "@types/geojson": "^7946.0.7",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "node-forge": ">=0.10.0",
+    "parcel": "^1.12.4",
+    "parcel-plugin-clean-dist": "0.0.6",
+    "parcel-plugin-static-files-copy": "^2.5.0",
+    "typescript": "^4.1.2"
+  },
   "cordova": {
     "plugins": {
       "cordova-plugin-whitelist": {},
       "cordova-plugin-browsersync-gen2": {},
       "cordova-plugin-mapbox": {
-        "ACCESS_TOKEN": "pk.eyJ1IjoidmlrdGkiLCJhIjoiamFranA3OCJ9.k9EnqL2OvoJ3tIyUuTFivA"
+        "ACCESS_TOKEN": "pk.eyJ1IjoidmlrdGkiLCJhIjoiamFranA3OCJ9.k9EnqL2OvoJ3tIyUuTFivA",
+        "source": {
+          "type": "git",
+          "url": "https://github.com/dagatsoin/cordova-plugin-mapbox.git"
+        }
       },
       "cordova-android-support-gradle-release": {
         "ANDROID_SUPPORT_VERSION": "27.+"
@@ -46,18 +61,5 @@
       "src/public"
     ],
     "watcherGlob": "**"
-  },
-  "devDependencies": {
-    "@types/cordova": "0.0.34",
-    "@types/geojson": "^7946.0.7",
-    "@types/react": "^17.0.0",
-    "@types/react-dom": "^17.0.0",
-    "node-forge": ">=0.10.0",
-    "parcel": "^1.12.4",
-    "parcel-plugin-clean-dist": "0.0.6",
-    "parcel-plugin-static-files-copy": "^2.5.0",
-    "typescript": "^4.1.2",
-    "cordova-android": "9.1.0",
-    "cordova-plugin-mapbox": "https://github.com/dagatsoin/cordova-plugin-mapbox.git"
   }
 }
