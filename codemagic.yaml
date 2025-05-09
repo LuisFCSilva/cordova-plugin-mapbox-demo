@@ -5,6 +5,9 @@ workflows:
       node: 16.20.0
       vars:
         CORDOVA_ANDROID_VERSION: 9.1.0
+        JAVA_HOME: /opt/java/openjdk
+        ANDROID_HOME: /opt/android-sdk
+      node: 18.16.0
     scripts:
       - name: Install Cordova CLI
         script: |
@@ -21,11 +24,22 @@ workflows:
         script: |
           npm install --legacy-peer-deps
 
+      - name: Add Android platform
+        script: |
+          cordova platform add android@${CORDOVA_ANDROID_VERSION}
+
+      - name: Add whitelist plugin
+        script: |
+          cordova plugin add cordova-plugin-whitelist
+
       - name: Prepare Cordova project
         script: |
           cordova platform add android@$CORDOVA_ANDROID_VERSION
-          cordova plugin add https://github.com/dagatsoin/cordova-plugin-mapbox.git --nofetch
-          cordova build android
+          cordova plugin add https://github.com/dagatsoin/cordova-plugin-mapbox.git --variable ACCESS_TOKEN=pk.eyJ1IjoiaW50ZXJuYXRpb25hbHNvcyIsImEiOiJwVTYtUFlRIn0.l8CfOIrMJwvX3D1ZmbkEzg --nofetch
+
+      - name: Build Cordova Android
+        script: |
+          cordova build android --release
 
     artifacts:
       - platforms/android/app/build/outputs/**/*.apk
